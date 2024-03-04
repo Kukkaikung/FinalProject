@@ -7,10 +7,10 @@ datas = []
 
 def get_station_data(station_id):
 
-    station_id = station_id
+    station_id = "44t"
     param = "PM25,PM10,O3,CO,NO2,SO2,WS,TEMP,RH,WD"
     data_type = "hr"
-    start_date = "2024-02-27"
+    start_date = "2023-01-01"
     end_date = "2024-02-27"
     start_time = "00"
     end_time = "23"
@@ -25,7 +25,7 @@ def get_station_data(station_id):
     pd_from_dict = pd.DataFrame.from_dict(datas)
     # print(pformat(pd_from_dict))
     # print(pd_from_dict)
-    pd_from_dict.to_csv(f"air4thai_{station_id}_{start_date}_{end_date}.csv", index=False)
+    pd_from_dict.to_csv(f"air4thai_{station_id}_{start_date}_{end_date}.csv")
 
 def get_station_id():
     station_ids_url = "http://air4thai.com/forweb/getHistoryStation.php"
