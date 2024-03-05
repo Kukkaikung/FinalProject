@@ -21453,3 +21453,195 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
 2024-03-06 03:12:54,688:INFO:Scoring test/hold-out set
 2024-03-06 03:12:55,265:INFO:Visual Rendered Successfully
 2024-03-06 03:12:55,352:INFO:plot_model() successfully completed......................................
+2024-03-06 03:18:10,100:INFO:Initializing plot_model()
+2024-03-06 03:18:10,100:INFO:plot_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x0000029F4EDCEAD0>, estimator=ExtraTreesRegressor(n_jobs=-1, random_state=123), plot=feature, scale=1, save=False, fold=None, fit_kwargs=None, plot_kwargs=None, groups=None, feature_name=None, label=False, verbose=True, system=True, display=None, display_format=None)
+2024-03-06 03:18:10,100:INFO:Checking exceptions
+2024-03-06 03:18:10,185:INFO:Preloading libraries
+2024-03-06 03:18:10,207:INFO:Copying training dataset
+2024-03-06 03:18:10,207:INFO:Plot type: feature
+2024-03-06 03:18:10,208:WARNING:No coef_ found. Trying feature_importances_
+2024-03-06 03:18:10,521:INFO:Visual Rendered Successfully
+2024-03-06 03:18:10,608:INFO:plot_model() successfully completed......................................
+2024-03-06 03:19:02,770:INFO:Initializing plot_model()
+2024-03-06 03:19:02,770:INFO:plot_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x0000029F4EDCEAD0>, estimator=ExtraTreesRegressor(n_jobs=-1, random_state=123), plot=feature, scale=1, save=False, fold=None, fit_kwargs=None, plot_kwargs=None, groups=None, feature_name=None, label=False, verbose=True, system=True, display=None, display_format=None)
+2024-03-06 03:19:02,770:INFO:Checking exceptions
+2024-03-06 03:19:02,858:INFO:Preloading libraries
+2024-03-06 03:19:02,877:INFO:Copying training dataset
+2024-03-06 03:19:02,877:INFO:Plot type: feature
+2024-03-06 03:19:02,878:WARNING:No coef_ found. Trying feature_importances_
+2024-03-06 03:19:03,184:INFO:Visual Rendered Successfully
+2024-03-06 03:19:03,268:INFO:plot_model() successfully completed......................................
+2024-03-06 03:25:18,210:INFO:Initializing predict_model()
+2024-03-06 03:25:18,210:INFO:predict_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x0000029F4EDCEAD0>, estimator=ExtraTreesRegressor(n_jobs=-1, random_state=123), probability_threshold=None, encoded_labels=False, raw_score=False, round=4, verbose=True, ml_usecase=None, preprocess=True, encode_labels=<function _SupervisedExperiment.predict_model.<locals>.encode_labels at 0x0000029F5E16ECA0>)
+2024-03-06 03:25:18,210:INFO:Checking exceptions
+2024-03-06 03:25:18,210:INFO:Preloading libraries
+2024-03-06 03:28:28,889:INFO:Initializing predict_model()
+2024-03-06 03:28:28,889:INFO:predict_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x0000029F7D174AD0>, estimator=ExtraTreesRegressor(n_jobs=-1, random_state=123), probability_threshold=None, encoded_labels=False, raw_score=False, round=4, verbose=True, ml_usecase=None, preprocess=True, encode_labels=<function _SupervisedExperiment.predict_model.<locals>.encode_labels at 0x0000029F5E25B060>)
+2024-03-06 03:28:28,889:INFO:Checking exceptions
+2024-03-06 03:28:28,889:INFO:Preloading libraries
+2024-03-06 03:35:37,457:INFO:Initializing predict_model()
+2024-03-06 03:35:37,457:INFO:predict_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x0000029F4EDCEAD0>, estimator=ExtraTreesRegressor(n_jobs=-1, random_state=123), probability_threshold=None, encoded_labels=False, raw_score=False, round=4, verbose=True, ml_usecase=None, preprocess=True, encode_labels=<function _SupervisedExperiment.predict_model.<locals>.encode_labels at 0x0000029F5E16FCE0>)
+2024-03-06 03:35:37,457:INFO:Checking exceptions
+2024-03-06 03:35:37,457:INFO:Preloading libraries
+2024-03-06 03:35:37,460:INFO:Set up data.
+2024-03-06 03:35:37,471:INFO:Set up index.
+2024-03-06 03:37:18,519:INFO:Initializing predict_model()
+2024-03-06 03:37:18,519:INFO:predict_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x0000029F7D174AD0>, estimator=ExtraTreesRegressor(n_jobs=-1, random_state=123), probability_threshold=None, encoded_labels=False, raw_score=False, round=4, verbose=True, ml_usecase=None, preprocess=True, encode_labels=<function _SupervisedExperiment.predict_model.<locals>.encode_labels at 0x0000029F51975580>)
+2024-03-06 03:37:18,520:INFO:Checking exceptions
+2024-03-06 03:37:18,520:INFO:Preloading libraries
+2024-03-06 03:37:18,522:INFO:Set up data.
+2024-03-06 03:37:18,531:INFO:Set up index.
+2024-03-06 04:49:09,443:INFO:Initializing predict_model()
+2024-03-06 04:49:09,443:INFO:predict_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x0000029F4EDCEAD0>, estimator=      Unnamed: 0.1  Unnamed: 0         DATETIMEDATA  PM25    O3  WS  TEMP  RH  \
+0                0           0  2024-01-01 00:00:00  16.5  16.0   1    27  79   
+1                1           1  2024-01-01 01:00:00  33.6   0.0   1    27  82   
+2                2           2  2024-01-01 02:00:00  34.2   0.0   1    26  84   
+3                3           3  2024-01-01 03:00:00  20.1   0.0   1    26  82   
+4                4           4  2024-01-01 04:00:00  16.5   1.0   1    27  79   
+...            ...         ...                  ...   ...   ...  ..   ...  ..   
+5563          5563        5563  2024-02-27 19:00:00  21.7   9.0   1    29  67   
+5564          5564        5564  2024-02-27 20:00:00  17.5   1.0   1    29  68   
+5565          5565        5565  2024-02-27 21:00:00  21.1   0.0   1    29  69   
+5566          5566        5566  2024-02-27 22:00:00  23.2   0.0   1    29  70   
+5567          5567        5567  2024-02-27 23:00:00  16.2   8.0   1    28  71   
+
+       WD stationID  
+0     115       44t  
+1      97       44t  
+2      96       44t  
+3     108       44t  
+4     106       44t  
+...   ...       ...  
+5563  162       44t  
+5564  134       44t  
+5565  140       44t  
+5566  111       44t  
+5567  120       44t  
+
+[5568 rows x 10 columns], probability_threshold=None, encoded_labels=False, raw_score=False, round=4, verbose=True, ml_usecase=None, preprocess=True, encode_labels=<function _SupervisedExperiment.predict_model.<locals>.encode_labels at 0x0000029F51974900>)
+2024-03-06 04:49:09,444:INFO:Checking exceptions
+2024-03-06 04:49:09,444:INFO:Preloading libraries
+2024-03-06 04:49:09,448:INFO:Set up data.
+2024-03-06 04:49:09,459:INFO:Set up index.
+2024-03-06 04:51:13,305:INFO:Initializing predict_model()
+2024-03-06 04:51:13,305:INFO:predict_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x0000029F4EDCEAD0>, estimator=ExtraTreesRegressor(n_jobs=-1, random_state=123), probability_threshold=None, encoded_labels=False, raw_score=False, round=4, verbose=True, ml_usecase=None, preprocess=True, encode_labels=<function _SupervisedExperiment.predict_model.<locals>.encode_labels at 0x0000029F519753A0>)
+2024-03-06 04:51:13,305:INFO:Checking exceptions
+2024-03-06 04:51:13,306:INFO:Preloading libraries
+2024-03-06 04:51:13,308:INFO:Set up data.
+2024-03-06 04:51:13,316:INFO:Set up index.
+2024-03-06 04:51:47,067:INFO:Initializing predict_model()
+2024-03-06 04:51:47,067:INFO:predict_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x0000029F4EDCEAD0>, estimator=ExtraTreesRegressor(n_jobs=-1, random_state=123), probability_threshold=None, encoded_labels=False, raw_score=False, round=4, verbose=True, ml_usecase=None, preprocess=True, encode_labels=<function _SupervisedExperiment.predict_model.<locals>.encode_labels at 0x0000029F51C514E0>)
+2024-03-06 04:51:47,067:INFO:Checking exceptions
+2024-03-06 04:51:47,068:INFO:Preloading libraries
+2024-03-06 04:51:47,069:INFO:Set up data.
+2024-03-06 04:51:47,076:INFO:Set up index.
+2024-03-06 04:52:17,070:INFO:Initializing predict_model()
+2024-03-06 04:52:17,070:INFO:predict_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x0000029F4EDCEAD0>, estimator=ExtraTreesRegressor(n_jobs=-1, random_state=123), probability_threshold=None, encoded_labels=False, raw_score=False, round=4, verbose=True, ml_usecase=None, preprocess=True, encode_labels=<function _SupervisedExperiment.predict_model.<locals>.encode_labels at 0x0000029F51C50FE0>)
+2024-03-06 04:52:17,070:INFO:Checking exceptions
+2024-03-06 04:52:17,070:INFO:Preloading libraries
+2024-03-06 04:52:17,073:INFO:Set up data.
+2024-03-06 04:52:17,080:INFO:Set up index.
+2024-03-06 04:52:30,628:INFO:Initializing predict_model()
+2024-03-06 04:52:30,628:INFO:predict_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x0000029F4EDCEAD0>, estimator=ExtraTreesRegressor(n_jobs=-1, random_state=123), probability_threshold=None, encoded_labels=False, raw_score=False, round=4, verbose=True, ml_usecase=None, preprocess=True, encode_labels=<function _SupervisedExperiment.predict_model.<locals>.encode_labels at 0x0000029F56155EE0>)
+2024-03-06 04:52:30,628:INFO:Checking exceptions
+2024-03-06 04:52:30,628:INFO:Preloading libraries
+2024-03-06 04:52:30,630:INFO:Set up data.
+2024-03-06 04:52:30,638:INFO:Set up index.
+2024-03-06 04:52:35,617:INFO:Initializing predict_model()
+2024-03-06 04:52:35,617:INFO:predict_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x0000029F4EDCEAD0>, estimator=ExtraTreesRegressor(n_jobs=-1, random_state=123), probability_threshold=None, encoded_labels=False, raw_score=False, round=4, verbose=True, ml_usecase=None, preprocess=True, encode_labels=<function _SupervisedExperiment.predict_model.<locals>.encode_labels at 0x0000029F5CE34F40>)
+2024-03-06 04:52:35,618:INFO:Checking exceptions
+2024-03-06 04:52:35,618:INFO:Preloading libraries
+2024-03-06 04:56:24,589:INFO:Initializing save_model()
+2024-03-06 04:56:24,589:INFO:save_model(model=ExtraTreesRegressor(n_jobs=-1, random_state=123), model_name=my_best_pipeline, prep_pipe_=Pipeline(memory=FastMemory(location=C:\Users\ASUS\AppData\Local\Temp\joblib),
+         steps=[('numerical_imputer',
+                 TransformerWrapper(include=['Unnamed: 0.1', 'Unnamed: 0', 'O3',
+                                             'WS', 'TEMP', 'RH', 'WD'],
+                                    transformer=SimpleImputer())),
+                ('categorical_imputer',
+                 TransformerWrapper(include=['DATETIMEDATA', 'stationID'],
+                                    transformer=SimpleImputer(strategy='most_frequent'))),...
+                 TransformerWrapper(include=['stationID'],
+                                    transformer=OneHotEncoder(cols=['stationID'],
+                                                              handle_missing='return_nan',
+                                                              use_cat_names=True))),
+                ('rest_encoding',
+                 TransformerWrapper(include=['DATETIMEDATA'],
+                                    transformer=TargetEncoder(cols=['DATETIMEDATA'],
+                                                              handle_missing='return_nan'))),
+                ('clean_column_names',
+                 TransformerWrapper(transformer=CleanColumnNames()))]), verbose=True, use_case=MLUsecase.REGRESSION, kwargs={})
+2024-03-06 04:56:24,590:INFO:Adding model into prep_pipe
+2024-03-06 04:56:24,661:INFO:my_best_pipeline.pkl saved in current working directory
+2024-03-06 04:56:24,678:INFO:Pipeline(memory=Memory(location=None),
+         steps=[('numerical_imputer',
+                 TransformerWrapper(include=['Unnamed: 0.1', 'Unnamed: 0', 'O3',
+                                             'WS', 'TEMP', 'RH', 'WD'],
+                                    transformer=SimpleImputer())),
+                ('categorical_imputer',
+                 TransformerWrapper(include=['DATETIMEDATA', 'stationID'],
+                                    transformer=SimpleImputer(strategy='most_frequent'))),
+                ('onehot_encoding',
+                 TransformerWrapper(i...
+                                    transformer=OneHotEncoder(cols=['stationID'],
+                                                              handle_missing='return_nan',
+                                                              use_cat_names=True))),
+                ('rest_encoding',
+                 TransformerWrapper(include=['DATETIMEDATA'],
+                                    transformer=TargetEncoder(cols=['DATETIMEDATA'],
+                                                              handle_missing='return_nan'))),
+                ('clean_column_names',
+                 TransformerWrapper(transformer=CleanColumnNames())),
+                ('trained_model',
+                 ExtraTreesRegressor(n_jobs=-1, random_state=123))])
+2024-03-06 04:56:24,678:INFO:save_model() successfully completed......................................
+2024-03-06 04:56:43,977:INFO:Initializing save_model()
+2024-03-06 04:56:43,977:INFO:save_model(model=ExtraTreesRegressor(n_jobs=-1, random_state=123), model_name=my_best_pipeline, prep_pipe_=Pipeline(memory=FastMemory(location=C:\Users\ASUS\AppData\Local\Temp\joblib),
+         steps=[('numerical_imputer',
+                 TransformerWrapper(include=['Unnamed: 0.1', 'Unnamed: 0', 'O3',
+                                             'WS', 'TEMP', 'RH', 'WD'],
+                                    transformer=SimpleImputer())),
+                ('categorical_imputer',
+                 TransformerWrapper(include=['DATETIMEDATA', 'stationID'],
+                                    transformer=SimpleImputer(strategy='most_frequent'))),...
+                 TransformerWrapper(include=['stationID'],
+                                    transformer=OneHotEncoder(cols=['stationID'],
+                                                              handle_missing='return_nan',
+                                                              use_cat_names=True))),
+                ('rest_encoding',
+                 TransformerWrapper(include=['DATETIMEDATA'],
+                                    transformer=TargetEncoder(cols=['DATETIMEDATA'],
+                                                              handle_missing='return_nan'))),
+                ('clean_column_names',
+                 TransformerWrapper(transformer=CleanColumnNames()))]), verbose=True, use_case=MLUsecase.REGRESSION, kwargs={})
+2024-03-06 04:56:43,977:INFO:Adding model into prep_pipe
+2024-03-06 04:56:44,054:INFO:my_best_pipeline.pkl saved in current working directory
+2024-03-06 04:56:44,072:INFO:Pipeline(memory=Memory(location=None),
+         steps=[('numerical_imputer',
+                 TransformerWrapper(include=['Unnamed: 0.1', 'Unnamed: 0', 'O3',
+                                             'WS', 'TEMP', 'RH', 'WD'],
+                                    transformer=SimpleImputer())),
+                ('categorical_imputer',
+                 TransformerWrapper(include=['DATETIMEDATA', 'stationID'],
+                                    transformer=SimpleImputer(strategy='most_frequent'))),
+                ('onehot_encoding',
+                 TransformerWrapper(i...
+                                    transformer=OneHotEncoder(cols=['stationID'],
+                                                              handle_missing='return_nan',
+                                                              use_cat_names=True))),
+                ('rest_encoding',
+                 TransformerWrapper(include=['DATETIMEDATA'],
+                                    transformer=TargetEncoder(cols=['DATETIMEDATA'],
+                                                              handle_missing='return_nan'))),
+                ('clean_column_names',
+                 TransformerWrapper(transformer=CleanColumnNames())),
+                ('trained_model',
+                 ExtraTreesRegressor(n_jobs=-1, random_state=123))])
+2024-03-06 04:56:44,072:INFO:save_model() successfully completed......................................
+2024-03-06 04:57:08,444:INFO:Initializing predict_model()
+2024-03-06 04:57:08,444:INFO:predict_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x0000029F7D174AD0>, estimator=ExtraTreesRegressor(n_jobs=-1, random_state=123), probability_threshold=None, encoded_labels=False, raw_score=False, round=4, verbose=True, ml_usecase=None, preprocess=True, encode_labels=<function _SupervisedExperiment.predict_model.<locals>.encode_labels at 0x0000029F5CE34F40>)
+2024-03-06 04:57:08,444:INFO:Checking exceptions
+2024-03-06 04:57:08,444:INFO:Preloading libraries
+2024-03-06 04:58:18,109:INFO:Initializing load_model()
+2024-03-06 04:58:18,109:INFO:load_model(model_name=my_best_pipeline, platform=None, authentication=None, verbose=True)
+2024-03-06 04:58:36,616:INFO:Initializing load_model()
+2024-03-06 04:58:36,617:INFO:load_model(model_name=my_best_pipeline, platform=None, authentication=None, verbose=True)
