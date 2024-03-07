@@ -12,8 +12,9 @@ clean_data02[number_columns] = clean_data02[number_columns].fillna(clean_data02[
 clean_data02['TEMP'].replace(0, clean_data02['TEMP'].mean(), inplace=True)
 clean_data02['WS'].replace(0, clean_data02['WS'].mean().round(), inplace=True)
 
-clean_data02.to_csv("C:\\Users\\ASUS\\Desktop\\VS code\\PsuTerm02\\241-152\\final_project\\data_mange\\clean02_air4thai_44t_2023-01-01_2024-02-27.csv")
+clean_data02 = clean_data02.drop(index=range(1392, len(clean_data02)))
 
+clean_data02.to_csv("C:\\Users\\ASUS\\Desktop\\VS code\\PsuTerm02\\241-152\\final_project\\data_mange\\clean02_air4thai_44t_2023-01-01_2024-02-27.csv")
 
 
 
