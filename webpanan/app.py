@@ -57,8 +57,8 @@ def create_scatter(selected_data, filtered_df):
 def create_pie(selected_data, filtered_df):
     grouped_data = filtered_df.groupby(selected_data).size().reset_index(name='count')
     fig = px.pie(grouped_data, names=selected_data, values='count', title=f'{selected_data} Pie Chart',
-                 labels={'': selected_data},  # Set label for each pie slice
-                 color_discrete_sequence=px.colors.qualitative.Set3)  # Set color scheme
+                labels={'': selected_data},  # Set label for each pie slice
+                color_discrete_sequence=px.colors.qualitative.Set3)  # Set color scheme
     return fig
 
 # App layout with tables, graphs, and Date Picker Range
@@ -129,8 +129,8 @@ app.layout = html.Div([
     Output('scatter-plot', 'figure'),
     Output('pie-chart', 'figure'),
     [Input('dropdown-graph', 'value'),
-     Input('date-picker-range', 'start_date'),
-     Input('date-picker-range', 'end_date')]
+    Input('date-picker-range', 'start_date'),
+    Input('date-picker-range', 'end_date')]
 )
 def update_graphs(selected_data, start_date, end_date):
     filtered_df = df[(df['DATETIMEDATA'] >= start_date) & (df['DATETIMEDATA'] <= end_date)]
