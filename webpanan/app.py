@@ -3,7 +3,6 @@ from dash import Dash, html, dash_table, dcc, callback_context
 from dash.dependencies import Input, Output
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
 
 # Incorporate data
 df = pd.read_csv('data_mange/clean03_air4thai_44t_2023-01-01_2024-02-27.csv')
@@ -53,16 +52,16 @@ def create_scatter(selected_data, filtered_df):
     fig = px.scatter(filtered_df, x='DATETIMEDATA', y=selected_data, title=f'{selected_data} Scatter Plot')
     return fig
 
-# Function to create pie chart
-def create_pie(selected_data, filtered_df):
-    grouped_data = filtered_df.groupby(selected_data).size().reset_index(name='count')
-    fig = px.pie(grouped_data, names=selected_data, values='count', title=f'{selected_data} Pie Chart',
-                labels={'': selected_data},  # Set label for each pie slice
-                color_discrete_sequence=px.colors.qualitative.Set3)  # Set color scheme
-    return fig
-
 def create_predictions_graph(selected_data, filtered_df, title):
     fig = px.line(filtered_df, x='DATETIMEDATA', y='prediction_label', title=title)
+    return fig
+
+def histogram_predictions_graph(selected_data, filtered_df, title):
+    fig = px.histogram(filtered_df, x='DATETIMEDATA', y='prediction_label', title=title)
+    return fig
+
+def scatter_predictions_graph(selected_data, filtered_df, title):
+    fig = px.scatter(filtered_df, x='DATETIMEDATA', y='prediction_label', title=title)
     return fig
 
 # App layout with tables, graphs, and Date Picker Range
@@ -97,9 +96,11 @@ app.layout = html.Div([
     # Graphs based on selected data
     html.Div([
         dcc.Graph(id='line-graph'),
-        dcc.Graph(id='histogram'),
-        dcc.Graph(id='scatter-plot'),
-        dcc.Graph(id='pie-chart'),
+        dcc.Graph(id='histogram')
+    ], style={'display': 'flex', 'flex-wrap': 'wrap', 'justify-content': 'center', 'margin-bottom': '20px'}),
+
+    html.Div([
+        dcc.Graph(id='scatter-plot')
     ], style={'display': 'flex', 'flex-wrap': 'wrap', 'justify-content': 'center', 'margin-bottom': '20px'}),
 
     # Table for df1
@@ -120,8 +121,15 @@ app.layout = html.Div([
             display_format='YYYY-MM-DD',
             style={'width': '25%', 'margin-right': '20px', 'margin-bottom': '20px'}  # Adjust width and add margin
         ),
-        dcc.Graph(id='graph-df1')
     ]),
+    html.Div([
+        dcc.Graph(id='graph-df1'),
+        dcc.Graph(id='histogram-df1')
+    ], style={'display': 'flex', 'flex-wrap': 'wrap', 'justify-content': 'center', 'margin-bottom': '20px'}),
+
+    html.Div([
+        dcc.Graph(id='scatter-df1')
+    ], style={'display': 'flex', 'flex-wrap': 'wrap', 'justify-content': 'center', 'margin-bottom': '20px'}),
 
     # Table for df2
     html.Div([
@@ -141,8 +149,16 @@ app.layout = html.Div([
             display_format='YYYY-MM-DD',
             style={'width': '25%', 'margin-bottom': '20px'}  # Adjust width and add margin
         ),
-        dcc.Graph(id='graph-df2')
-    ])
+    ]),
+    html.Div([
+        dcc.Graph(id='graph-df2'),
+        dcc.Graph(id='histogram-df2')
+    ], style={'display': 'flex', 'flex-wrap': 'wrap', 'justify-content': 'center', 'margin-bottom': '20px'}),
+
+    html.Div([
+        dcc.Graph(id='scatter-df2')
+    ], style={'display': 'flex', 'flex-wrap': 'wrap', 'justify-content': 'center', 'margin-bottom': '20px'}),
+
 ])
 
 
@@ -151,7 +167,6 @@ app.layout = html.Div([
     Output('line-graph', 'figure'),
     Output('histogram', 'figure'),
     Output('scatter-plot', 'figure'),
-    Output('pie-chart', 'figure'),
     [Input('dropdown-graph', 'value'),
     Input('date-picker-range', 'start_date'),
     Input('date-picker-range', 'end_date')]
@@ -161,13 +176,16 @@ def update_graphs(selected_data, start_date, end_date):
     line_fig = create_graph(selected_data, filtered_df)
     histogram_fig = create_histogram(selected_data, filtered_df)
     scatter_fig = create_scatter(selected_data, filtered_df)
-    pie_fig = create_pie(selected_data, filtered_df)
-    return line_fig, histogram_fig, scatter_fig, pie_fig
+    return line_fig, histogram_fig, scatter_fig
 
 # Callbacks to update the graphs for df1 and df2
 @app.callback(
     Output('graph-df1', 'figure'),
+    Output('histogram-df1', 'figure'),
+    Output('scatter-df1', 'figure'),
     Output('graph-df2', 'figure'),
+    Output('histogram-df2', 'figure'),
+    Output('scatter-df2', 'figure'),
     [Input('date-picker-range-df1', 'start_date'),
      Input('date-picker-range-df1', 'end_date'),
      Input('date-picker-range-df2', 'start_date'),
@@ -177,8 +195,12 @@ def update_predictions_graphs(start_date_df1, end_date_df1, start_date_df2, end_
     filtered_df1 = df1[(df1['DATETIMEDATA'] >= start_date_df1) & (df1['DATETIMEDATA'] <= end_date_df1)]
     filtered_df2 = df2[(df2['DATETIMEDATA'] >= start_date_df2) & (df2['DATETIMEDATA'] <= end_date_df2)]
     fig_df1 = create_predictions_graph('PM25', filtered_df1, 'Predictions PM25')
+    fig_histogram_df1 = histogram_predictions_graph('PM25', filtered_df1, 'Predictions PM25')
+    fig_scatter_predictions_df1 = scatter_predictions_graph('PM25', filtered_df1, 'Predictions PM25')
     fig_df2 = create_predictions_graph('TEMP', filtered_df2, 'Predictions TEMP')
-    return fig_df1, fig_df2
+    fig_histogram_df2 = histogram_predictions_graph('TEMP', filtered_df2, 'Predictions TEMP')
+    fig_scatter_predictions_df2 = scatter_predictions_graph('TEMP', filtered_df2, 'Predictions TEMP')
+    return fig_df1, fig_histogram_df1, fig_scatter_predictions_df1, fig_df2, fig_histogram_df2, fig_scatter_predictions_df2
 
 
 # Run the app
