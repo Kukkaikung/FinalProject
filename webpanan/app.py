@@ -6,7 +6,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 # Incorporate data
-df = pd.read_csv('data_mange/clean02_air4thai_44t_2023-01-01_2024-02-27.csv')
+df = pd.read_csv('data_mange/clean03_air4thai_44t_2023-01-01_2024-02-27.csv')
 df1 = pd.read_csv('predict_data/predictions_PM25.csv')
 df2 = pd.read_csv('predict_data/predictions_TEMP.csv')
 
@@ -61,7 +61,10 @@ def create_pie(selected_data, filtered_df):
                 color_discrete_sequence=px.colors.qualitative.Set3)  # Set color scheme
     return fig
 
-# App layout with tables, graphs, and Date Picker Range
+def create_predictions_graph(selected_data, filtered_df, title):
+    fig = px.line(filtered_df, x='DATETIMEDATA', y='prediction_label', title=title)
+    return fig
+
 # App layout with tables, graphs, and Date Picker Range
 app.layout = html.Div([
     html.H1(children='Air Quality Predictions', style={'text-align': 'center', 'color': 'blue', 'background-color': '#f2f2f2', 'padding': '10px'}),  # Change the title and add background color
@@ -102,25 +105,48 @@ app.layout = html.Div([
     ], style={'display': 'flex', 'flex-wrap': 'wrap', 'justify-content': 'center', 'margin-bottom': '20px'}),
 
     # Table for df1
-    dash_table.DataTable(
-        id='table-df1',
-        data=df1.to_dict('records'),
-        page_size=10,
-        style_table=table_style,
-        style_header=header_style,
-        style_cell=cell_style,
-    ),
-    
+    html.Div([
+        html.H2(children='Predictions PM25', style={'text-align': 'center'}),
+        dash_table.DataTable(
+            id='table-df1',
+            data=df1.to_dict('records'),
+            page_size=10,
+            style_table=table_style,
+            style_header=header_style,
+            style_cell=cell_style,
+        ),
+        dcc.DatePickerRange(
+            id='date-picker-range-df1',
+            start_date='2024-02-28',
+            end_date='2024-03-29',
+            display_format='YYYY-MM-DD',
+            style={'width': '25%', 'margin-right': '20px', 'margin-bottom': '20px'}  # Adjust width and add margin
+        ),
+        dcc.Graph(id='graph-df1')
+    ]),
+
     # Table for df2
-    dash_table.DataTable(
-        id='table-df2',
-        data=df2.to_dict('records'),
-        page_size=10,
-        style_table=table_style,
-        style_header=header_style,
-        style_cell=cell_style,
-    )
+    html.Div([
+        html.H2(children='Predictions TEMP', style={'text-align': 'center'}),
+        dash_table.DataTable(
+            id='table-df2',
+            data=df2.to_dict('records'),
+            page_size=10,
+            style_table=table_style,
+            style_header=header_style,
+            style_cell=cell_style,
+        ),
+        dcc.DatePickerRange(
+            id='date-picker-range-df2',
+            start_date='2024-02-28',
+            end_date='2024-03-29',
+            display_format='YYYY-MM-DD',
+            style={'width': '25%', 'margin-bottom': '20px'}  # Adjust width and add margin
+        ),
+        dcc.Graph(id='graph-df2')
+    ])
 ])
+
 
 # Callbacks to update the graphs based on dropdown selection and Date Picker Range
 @app.callback(
@@ -140,6 +166,24 @@ def update_graphs(selected_data, start_date, end_date):
     pie_fig = create_pie(selected_data, filtered_df)
     return line_fig, histogram_fig, scatter_fig, pie_fig
 
+# Callbacks to update the graphs for df1 and df2
+@app.callback(
+    Output('graph-df1', 'figure'),
+    Output('graph-df2', 'figure'),
+    [Input('date-picker-range-df1', 'start_date'),
+     Input('date-picker-range-df1', 'end_date'),
+     Input('date-picker-range-df2', 'start_date'),
+     Input('date-picker-range-df2', 'end_date')]
+)
+def update_predictions_graphs(start_date_df1, end_date_df1, start_date_df2, end_date_df2):
+    filtered_df1 = df1[(df1['DATETIMEDATA'] >= start_date_df1) & (df1['DATETIMEDATA'] <= end_date_df1)]
+    filtered_df2 = df2[(df2['DATETIMEDATA'] >= start_date_df2) & (df2['DATETIMEDATA'] <= end_date_df2)]
+    fig_df1 = create_predictions_graph('PM25', filtered_df1, 'Predictions PM25')
+    fig_df2 = create_predictions_graph('TEMP', filtered_df2, 'Predictions TEMP')
+    return fig_df1, fig_df2
+
+
 # Run the app
 if __name__ == '__main__':
     app.run_server(debug=True)
+
