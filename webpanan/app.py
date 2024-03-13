@@ -9,9 +9,10 @@ df = pd.read_csv('data_mange/clean03_air4thai_44t_2023-01-01_2024-02-27.csv')
 df1 = pd.read_csv('predict_data/predictions_PM25.csv')
 df2 = pd.read_csv('predict_data/predictions_TEMP.csv')
 
-# Initialize the app
+# Initialize the app with external stylesheets
 app = Dash(__name__)
 
+# Define styles
 # Define styles
 table_style = {
     'margin-bottom': '20px',
@@ -23,6 +24,16 @@ table_style = {
     'text-align': 'left',
     'margin-left': 'auto',  # Center the table
     'margin-right': 'auto',  # Center the table
+    'height': 'auto',  # Adjust the height of the table
+}
+
+graph_style = {
+    'backgroundColor': '#000000',  # Set background color to black for all graphs
+    'width': '80%',  # Adjust the width of the graphs
+    'max-width': '1100px',  # Limit the maximum width of the graphs
+    'height': '600px',  # Adjust the height of the graphs
+    'margin-left': 'auto',  # Center the graphs
+    'margin-right': 'auto',  # Center the graphs
 }
 
 header_style = {
@@ -66,101 +77,101 @@ def scatter_predictions_graph(selected_data, filtered_df, title):
 
 # App layout with tables, graphs, and Date Picker Range
 app.layout = html.Div([
-    html.H1(children='Air Quality Predictions', style={'text-align': 'center', 'color': 'blue', 'background-color': '#f2f2f2', 'padding': '10px'}),  # Change the title and add background color
+    # Style the background color and text color for the entire page
+    html.Div(style={'background-color': '#F5F5F5', 'color': '#333'}, children=[
+        html.H1(children='Air Quality Predictions', style={'text-align': 'center', 'padding': '50px'}),  # Center the title and adjust padding
 
-    # Table for df
-    dash_table.DataTable(
-        id='table-df',
-        data=df.to_dict('records'),
-        page_size=10,
-        style_table=table_style,
-        style_header=header_style,
-        style_cell=cell_style,
-    ),
-    html.Div([
-        dcc.Dropdown(
-            id='dropdown-graph',
-            options=[{'label': column, 'value': column} for column in valid_columns],
-            value='PM25',  # Default value
-            style={'width': '50%', 'margin-right': '20px', 'margin-bottom': '20px'}  # Adjust width and add margin
-        ),
-        dcc.DatePickerRange(
-            id='date-picker-range',
-            start_date='2024-01-01',
-            end_date='2024-02-27',
-            display_format='YYYY-MM-DD',
-            style={'width': '50%'}  # Adjust width
-        )
-    ], style={'display': 'flex', 'justify-content': 'center', 'margin-bottom': '20px'}),
-
-    # Graphs based on selected data
-    html.Div([
-        dcc.Graph(id='line-graph'),
-        dcc.Graph(id='histogram')
-    ], style={'display': 'flex', 'flex-wrap': 'wrap', 'justify-content': 'center', 'margin-bottom': '20px'}),
-
-    html.Div([
-        dcc.Graph(id='scatter-plot')
-    ], style={'display': 'flex', 'flex-wrap': 'wrap', 'justify-content': 'center', 'margin-bottom': '20px'}),
-
-    # Table for df1
-    html.Div([
-        html.H2(children='Predictions PM25', style={'text-align': 'center'}),
+        # Table for df
         dash_table.DataTable(
-            id='table-df1',
-            data=df1.to_dict('records'),
+            id='table-df',
+            data=df.to_dict('records'),
             page_size=10,
             style_table=table_style,
             style_header=header_style,
             style_cell=cell_style,
         ),
-        dcc.DatePickerRange(
-            id='date-picker-range-df1',
-            start_date='2024-02-28',
-            end_date='2024-03-29',
-            display_format='YYYY-MM-DD',
-            style={'width': '25%', 'margin-right': '20px', 'margin-bottom': '20px'}  # Adjust width and add margin
-        ),
-    ]),
-    html.Div([
-        dcc.Graph(id='graph-df1'),
-        dcc.Graph(id='histogram-df1')
-    ], style={'display': 'flex', 'flex-wrap': 'wrap', 'justify-content': 'center', 'margin-bottom': '20px'}),
+        html.Div([
+            dcc.Dropdown(
+                id='dropdown-graph',
+                options=[{'label': column, 'value': column} for column in valid_columns],
+                value='PM25',  # Default value
+                style={'width': '35%', 'margin-right': '20px', 'margin-bottom': '20px', 'margin-left': '400px', 'margin-right': 'auto'}
+            ),
+            dcc.DatePickerRange(
+                id='date-picker-range',
+                start_date='2024-01-01',
+                end_date='2024-02-27',
+                display_format='YYYY-MM-DD',
+                style={'width': '50%', 'margin-bottom': '20px', 'margin-left': 'auto', 'margin-right': 'auto'}
+            )], style={'display': 'flex', 'justify-content': 'center', 'margin-bottom': '20px'}),
 
-    html.Div([
-        dcc.Graph(id='scatter-df1')
-    ], style={'display': 'flex', 'flex-wrap': 'wrap', 'justify-content': 'center', 'margin-bottom': '20px'}),
+        # Graphs based on selected data
+        html.Div([
+            dcc.Graph(id='line-graph', style=graph_style),
+            dcc.Graph(id='histogram', style=graph_style)
+        ], style={'display': 'flex', 'flex-wrap': 'wrap', 'justify-content': 'center', 'margin-bottom': '20px'}),
 
-    # Table for df2
-    html.Div([
-        html.H2(children='Predictions TEMP', style={'text-align': 'center'}),
-        dash_table.DataTable(
-            id='table-df2',
-            data=df2.to_dict('records'),
-            page_size=10,
-            style_table=table_style,
-            style_header=header_style,
-            style_cell=cell_style,
-        ),
-        dcc.DatePickerRange(
-            id='date-picker-range-df2',
-            start_date='2024-02-28',
-            end_date='2024-03-29',
-            display_format='YYYY-MM-DD',
-            style={'width': '25%', 'margin-bottom': '20px'}  # Adjust width and add margin
-        ),
-    ]),
-    html.Div([
-        dcc.Graph(id='graph-df2'),
-        dcc.Graph(id='histogram-df2')
-    ], style={'display': 'flex', 'flex-wrap': 'wrap', 'justify-content': 'center', 'margin-bottom': '20px'}),
+        html.Div([
+            dcc.Graph(id='scatter-plot', style=graph_style)
+        ], style={'display': 'flex', 'flex-wrap': 'wrap', 'justify-content': 'center', 'margin-bottom': '20px'}),
 
-    html.Div([
-        dcc.Graph(id='scatter-df2')
-    ], style={'display': 'flex', 'flex-wrap': 'wrap', 'justify-content': 'center', 'margin-bottom': '20px'}),
+        # Table for df1
+        html.Div([
+            html.H2(children='Predictions PM25', style={'text-align': 'center', 'margin-top' : '100px', 'margin-bottom' : '50px'}),
+            dash_table.DataTable(
+                id='table-df1',
+                data=df1.to_dict('records'),
+                page_size=10,
+                style_table=table_style,
+                style_header=header_style,
+                style_cell=cell_style,
+            ),
+            dcc.DatePickerRange(
+                id='date-picker-range-df1',
+                start_date='2024-02-28',
+                end_date='2024-03-29',
+                display_format='YYYY-MM-DD',
+                style={'display': 'flex', 'justify-content': 'center', 'margin-bottom': '20px'}
+            ),
+        ]),
+        html.Div([
+            dcc.Graph(id='graph-df1', style=graph_style),
+            dcc.Graph(id='histogram-df1', style=graph_style)
+        ], style={'display': 'flex', 'flex-wrap': 'wrap', 'justify-content': 'center', 'margin-bottom': '20px'}),
 
+        html.Div([
+            dcc.Graph(id='scatter-df1', style=graph_style)
+        ], style={'display': 'flex', 'flex-wrap': 'wrap', 'justify-content': 'center', 'margin-bottom': '20px'}),
+
+        # Table for df2
+        html.Div([
+            html.H2(children='Predictions TEMP', style={'text-align': 'center', 'margin-top' : '100px', 'margin-bottom' : '50px'}),
+            dash_table.DataTable(
+                id='table-df2',
+                data=df2.to_dict('records'),
+                page_size=10,
+                style_table=table_style,
+                style_header=header_style,
+                style_cell=cell_style,
+            ),
+            dcc.DatePickerRange(
+                id='date-picker-range-df2',
+                start_date='2024-02-28',
+                end_date='2024-03-29',
+                display_format='YYYY-MM-DD',
+                style={'display': 'flex', 'justify-content': 'center', 'margin-bottom': '20px'}
+            ),
+        ]),
+        html.Div([
+            dcc.Graph(id='graph-df2', style=graph_style),
+            dcc.Graph(id='histogram-df2', style=graph_style)
+        ], style={'display': 'flex', 'flex-wrap': 'wrap', 'justify-content': 'center', 'margin-bottom': '20px'}),
+
+        html.Div([
+            dcc.Graph(id='scatter-df2', style=graph_style)
+        ], style={'display': 'flex', 'flex-wrap': 'wrap', 'justify-content': 'center', 'margin-bottom': '20px'}),
+    ])
 ])
-
 
 # Callbacks to update the graphs based on dropdown selection and Date Picker Range
 @app.callback(
