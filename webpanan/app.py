@@ -68,8 +68,16 @@ def create_predictions_graph(selected_data, filtered_df, title):
 # App layout with tables, graphs, and Date Picker Range
 app.layout = html.Div([
     html.H1(children='Air Quality Predictions', style={'text-align': 'center', 'color': 'blue', 'background-color': '#f2f2f2', 'padding': '10px'}),  # Change the title and add background color
-    
-    # Dropdown to select data for graphs and Date Picker Range
+
+    # Table for df
+    dash_table.DataTable(
+        id='table-df',
+        data=df.to_dict('records'),
+        page_size=10,
+        style_table=table_style,
+        style_header=header_style,
+        style_cell=cell_style,
+    ),
     html.Div([
         dcc.Dropdown(
             id='dropdown-graph',
@@ -85,16 +93,6 @@ app.layout = html.Div([
             style={'width': '50%'}  # Adjust width
         )
     ], style={'display': 'flex', 'justify-content': 'center', 'margin-bottom': '20px'}),
-
-    # Table for df
-    dash_table.DataTable(
-        id='table-df',
-        data=df.to_dict('records'),
-        page_size=10,
-        style_table=table_style,
-        style_header=header_style,
-        style_cell=cell_style,
-    ),
 
     # Graphs based on selected data
     html.Div([
@@ -186,4 +184,3 @@ def update_predictions_graphs(start_date_df1, end_date_df1, start_date_df2, end_
 # Run the app
 if __name__ == '__main__':
     app.run_server(debug=True)
-
