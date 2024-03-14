@@ -64,7 +64,7 @@ def create_graph(selected_data, filtered_df):
     return fig
 
 def create_histogram(selected_data, filtered_df):
-    fig = px.histogram(filtered_df, x=selected_data, title=f'{selected_data} Histogram')
+    fig = px.histogram(filtered_df, x='DATETIMEDATA', y=selected_data,title=f'{selected_data} Histogram')
     fig.update_layout(
         plot_bgcolor='black',  # Background color
         paper_bgcolor='white',  # Plot area background color
